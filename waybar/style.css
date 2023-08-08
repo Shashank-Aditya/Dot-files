@@ -81,8 +81,9 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #custom-power,
+#custom-tools,
 #mpd {
-    padding: 0 10px;
+    padding: 0 7px;
     margin: 6px 0.5px;
     color: #ffffff;
 }
@@ -107,7 +108,9 @@ button:hover {
 #custom-power {
     background-color: #000000;
 }
-
+#custom-tools {
+    background-color: #000000;
+}	
 #battery {
     background-color: #000000;
     color: #ffffff;
@@ -276,3 +279,4 @@ label:focus {
 #scratchpad.empty {
     background-color: transparent;
 }
+
