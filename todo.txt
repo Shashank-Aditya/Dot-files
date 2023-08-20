@@ -11,14 +11,9 @@ brightness the wrong way, what is the right way? do i need it?
 
 gtk apps customise theme
 autologin sway with runit
-make a guide , in latex luke smith style
-give artix linux install guide to chatgpt, learn how artix works etc.
 bemenu make good -- centered like a rectangle
 terminal move words using control
 is wrench a good icon? distracting? whoch onclick
-learn neovim
-
-chatgpt msrsaditya sign up
 
 
 Completed:
