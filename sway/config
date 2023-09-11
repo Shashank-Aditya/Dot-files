@@ -1,139 +1,86 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-# Remove Window Titles
-
-default_border pixel 2
-
-#Full screen and Floating mode
-
-for_window [app_id="mpv"] fullscreen
-for_window [app_id="swayimg"] floating enable
-for_window [app_id="ffplay"] floating enable
-
-#Dynamic Tiling
-
+# Dynamic Tiling Support (https://github.com/nwg-piotr/autotiling)
 exec_always autotiling
 
-# Logo key. Use Mod1 for Alt.
+# Window Borders
+default_border pixel 2
+
+# Custom Default Window Mode
+for_window [app_id="mpv"] fullscreen
+for_window [app_id="swayimg"] floating enable
+for_window [class="ffplay"] floating enable
+
+# Defaults
 set $mod Mod4
-# Home row direction keys, like vim
+set $term foot
+set $menu bemenu-run -p ""
+
+# Vim Bindings
 set $left h
 set $down j
 set $up k
 set $right l
 
-font pango: JetBrains Mono 12
+# Monospace Nerd Font
+font pango: JetbrainsMono Nerd Font 15
 
-# Your preferred terminal emulator
-set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi --show run
-#set $menu bemenu-run -i -l 11 -p "" --fn "JetBrains Mono Nerd Font 15" --line-height 30 --tb "#285577" --hb "#285577" --tf "#eeeeee" --hf "#eeeeee" --nf "#bbbbbb" --nb "#000000"
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/shashank/Downloads/batman.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# Wallpaper
+output * bg ~/Downloads/Mountain.jpg fill
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
+   # Touchpad Configuration
    input "1739:32531:Synaptics_TM3253-001" {
        dwt enabled
        tap enabled
        natural_scroll enabled
        middle_emulation enabled
    }
+   # Keyboard Configuration
    input "1:1:AT_Translated_Set_2_keyboard" {
-	xkb_options "caps:escape"
+       xkb_options "caps:escape"
    }
+    # Touchpad Bindings
+    bindgesture swipe:3:left workspace next
+    bindgesture swipe:3:right workspace prev
 
-# Adjust screen brightness
-bindgesture swipe:3:left workspace next
-bindgesture swipe:3:right workspace prev
- bindsym XF86MonBrightnessDown exec brightnessctl set 1%- && /home/shashank/scripts/brightness.sh
- bindsym XF86MonBrightnessUp exec brightnessctl set +1% && /home/shashank/scripts/brightness.sh
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
-### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
+    ## Key Bindings
+    # Defaults
     bindsym $mod+Return exec $term
-
-    # Kill focused window
-    bindsym $mod+q kill
-
-    # Start your launcher
     bindsym $mod+d exec $menu
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
-
-    # Reload the configuration file
+    bindsym $mod+f fullscreen
+    bindsym $mod+q kill
     bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do You Want to Exit this Session?' -B 'Yes, Exit Sway' 'swaymsg exit'
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
-# Moving around:
-#
-    # Move your focus around
+    # Screen Brightness Bindings
+    bindsym XF86MonBrightnessUp exec brightnessctl set +1% && /usr/local/bin/Scripts/Tools/brightness.sh
+    bindsym XF86MonBrightnessDown exec brightnessctl set 1%- && /usr/local/bin/Scripts/Tools/brightness.sh
+
+    # Custom Bindings
+    bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& nemo
+    bindsym $mod+n exec /usr/local/bin/Scripts/Wi-Fi/wifi-connect.sh
+    bindsym $mod+s exec /usr/local/bin/Scripts/Tools/power.sh   
+    bindsym $mod+w exec notify-send '🌐 Opening Browser...'&& brave 
+    bindsym $mod+equal exec /usr/local/bin/Scripts/Tools/calc.sh
+    bindsym Print exec /usr/local/bin/Scripts/Tools/tools.sh
+
+    # Shift Window Focus Using Vim Bindings
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
+    # Shift Windows Using Vim Bindings
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-    # Switch to workspace
+
+    # Float/Tile Windows
+    floating_modifier $mod normal
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space focus mode_toggle
+    bindsym $mod+a focus parent
+
+    # Move to Workspace 'X'
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
@@ -144,7 +91,8 @@ bindgesture swipe:3:right workspace prev
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
+
+    # Move Window to Workspace 'X'
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
     bindsym $mod+Shift+3 move container to workspace number 3
@@ -155,76 +103,41 @@ bindgesture swipe:3:right workspace prev
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
-
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
-
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
-
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
+    # Scratchpad
     bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+
+    # Layouts (Might Be Broken Because of "autotiling" or Custom Bindings)
+    #bindsym $mod+t layout tabbed
+    #bindsym $mod+s layout stacking
+    #bindsym $mod+e layout toggle split
+    #bindsym $mod+b splith
+    #bindsym $mod+v splitv
+
+# Resizing
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+# Status Bar
 bar {
+    position top
+    font pango:JetBrains Mono Nerd Font 14
+    separator_symbol ""
+    status_command i3blocks -c ~/.config/i3blocks/config
 
-swaybar_command waybar
+    colors {
+        statusline #FFFFFF
+        background #000000
+	    inactive_workspace #000000 #000000 #FFFFFF 
+	    focused_workspace  #444444 #444444 #FFFFFF
+    }
 }
+
 include /etc/sway/config.d/*
