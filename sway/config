@@ -1,10 +1,10 @@
-# Dynamic Tiling Support (https://github.com/nwg-piotr/autotiling)
+# Dynamic Tiling Support -- Dwindle Layout (https://github.com/nwg-piotr/autotiling)
 exec_always autotiling
 
-# Window Borders
+# Window Border Width
 default_border pixel 2
 
-# Custom Default Window Mode
+# Application Default Window Layout 
 for_window [app_id="mpv"] fullscreen
 for_window [app_id="swayimg"] floating enable
 for_window [class="ffplay"] floating enable
@@ -20,7 +20,7 @@ set $down j
 set $up k
 set $right l
 
-# Monospace Nerd Font
+# Monospaced Nerd Font
 font pango: JetbrainsMono Nerd Font 15
 
 # Wallpaper
@@ -37,12 +37,12 @@ output * bg ~/Downloads/Mountain.jpg fill
    input "1:1:AT_Translated_Set_2_keyboard" {
        xkb_options "caps:escape"
    }
-    # Touchpad Bindings
-    bindgesture swipe:3:left workspace next
-    bindgesture swipe:3:right workspace prev
+   # Touchpad Bindings
+   bindgesture swipe:3:left workspace next
+   bindgesture swipe:3:right workspace prev
 
     ## Key Bindings
-    # Defaults
+    # Basics
     bindsym $mod+Return exec $term
     bindsym $mod+d exec $menu
     bindsym $mod+f fullscreen
@@ -50,11 +50,11 @@ output * bg ~/Downloads/Mountain.jpg fill
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Do You Want to Exit this Session?' -B 'Yes, Exit Sway' 'swaymsg exit'
 
-    # Screen Brightness Bindings
+    # Screen Brightness
     bindsym XF86MonBrightnessUp exec brightnessctl set +1% && /usr/local/bin/Scripts/Tools/brightness.sh
     bindsym XF86MonBrightnessDown exec brightnessctl set 1%- && /usr/local/bin/Scripts/Tools/brightness.sh
 
-    # Custom Bindings
+    # Applications & Scripts
     bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& nemo
     bindsym $mod+n exec /usr/local/bin/Scripts/Wi-Fi/wifi-connect.sh
     bindsym $mod+s exec /usr/local/bin/Scripts/Tools/power.sh   
@@ -62,19 +62,19 @@ output * bg ~/Downloads/Mountain.jpg fill
     bindsym $mod+equal exec /usr/local/bin/Scripts/Tools/calc.sh
     bindsym Print exec /usr/local/bin/Scripts/Tools/tools.sh
 
-    # Shift Window Focus Using Vim Bindings
+    # Shift Window Focus
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
 
-    # Shift Windows Using Vim Bindings
+    # Shift Windows
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
 
-    # Float/Tile Windows
+    # Floating & Tiling Windows
     floating_modifier $mod normal
     bindsym $mod+Shift+space floating toggle
     bindsym $mod+space focus mode_toggle
@@ -108,14 +108,14 @@ output * bg ~/Downloads/Mountain.jpg fill
     bindsym $mod+Shift+minus move scratchpad
     bindsym $mod+minus scratchpad show
 
-    # Layouts (Might Be Broken Because of "autotiling" or Custom Bindings)
+    # Layouts (Might Be Broken Because of "Dynamic Tiling" or Custom Bindings)
     #bindsym $mod+t layout tabbed
     #bindsym $mod+s layout stacking
     #bindsym $mod+e layout toggle split
     #bindsym $mod+b splith
     #bindsym $mod+v splitv
 
-# Resizing
+# Resize
 mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
@@ -134,9 +134,9 @@ bar {
 
     colors {
         statusline #FFFFFF
-        background #000000
-	    inactive_workspace #000000 #000000 #FFFFFF 
-	    focused_workspace  #444444 #444444 #FFFFFF
+        background #000000D9
+	inactive_workspace #000000D9 #000000D9 #FFFFFF 
+	focused_workspace  #444444 #444444 #FFFFFF
     }
 }
 
