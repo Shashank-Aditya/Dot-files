@@ -1,25 +1,7 @@
-turn on and off
-search for other devices
-
-
-Todo:
-power profiles and low battery notifications
-cancel option in the menu for all
-idle, lock , hibernate, suspend etc. sway
-workspace swipe rotate off
-brightness the wrong way, what is the right way? do i need it?
-
-gtk apps customise theme
-autologin sway with runit
-bemenu make good -- centered like a rectangle
-terminal move words using control
-is wrench a good icon? distracting? whoch onclick
-
-
-Completed:
-
-dunst notifications customise
-wifi controls
-bluetooth controls
-night light and controls
-brightness controls notifications
+configs clean, minimal and unbloated
+watch whatsapp yt
+what you need -- as little mental overhead as possible
+everything should be as minimal as possible -- bare minimum stuff (not having it >>> having it, if doubt not needed)
+script optimisation all
+dotfiles script finalisation -- carefully all dependencies and everything, do trial install and see and add
+phone apps needed, plan on how to do it, backup everything
