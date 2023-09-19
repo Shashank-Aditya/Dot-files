@@ -1,0 +1,39 @@
+[Date]
+format=%output
+command=/usr/local/bin/Scripts/Tools/date.sh
+min_width=356
+interval=1
+
+[Bluetooth]
+format=%output
+command=/usr/local/bin/Scripts/Bluetooth/blueicon.sh
+interval=1
+
+[Sound]
+format=%output
+command=/usr/local/bin/Scripts/Sound/sound.sh
+min_width=75
+interval=1
+
+[Network]
+format=%output
+command=/usr/local/bin/Scripts/Network/essid.sh
+min_width=20
+interval=1
+
+[Battery]
+format=%output
+command=/usr/local/bin/Scripts/Battery/battery.sh
+min_width=70
+interval=1
+
+[Time]
+command=env TZ=Asia/Kolkata date +'%I:%M %p'
+min_width=93
+interval=1
+
+[Power Button]
+full_text=⏻
+command=sh /usr/local/bin/Scripts/Tools/power.sh >/dev/null
+min_width=20
+interval=0
