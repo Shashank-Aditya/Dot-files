@@ -1,9 +1,0 @@
-[Default Applications]
-image/jpg=swayimg.desktop
-image/jpeg=swayimg.desktop
-image/png=swayimg.desktop
-video/mp4=mpv.desktop
-application/pdf=org.pwmt.zathura.desktop
-text/html=google-chrome.desktop
-x-scheme-handler/http=google-chrome.desktop
-x-scheme-handler/https=google-chrome.desktop
