@@ -1,28 +1,135 @@
+# Initialisation
+autoload -U colors && colors
+PS1="%B%{$fg[white]%}[%{$fg[white]%}%n%{$fg[white]%}@%{$fg[white]%}%M %{$fg[cyan]%}%~%{$fg[white]%}]%{$reset_color%}$%b "
+
+# Options
+setopt share_history
+setopt append_history
+setopt autocd
+# setopt interactive_comments
+# stty stop undef
+
+# History
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.histfile
-HISTSIZE=100
-SAVEHIST=100
-bindkey '^a' beginning-of-line
-bindkey '^l' end-of-line
-PROMPT='%B%F{white}%n@%m%f %F{cyan}%~%f %b'
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Aliases
+alias ls="ls -hN --color=auto --group-directories-first"
+alias delete="sudo mv -t ~/.local/share/Trash/files/"
+alias ..="cd .."
+alias copy="wl-copy <"
+alias cp="sudo cp -iv"
+alias mv="sudo mv -iv"
+alias mkdir="sudo mkdir -pv"
+alias diff="diff --color=auto"
+alias show="swayimg"
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rns'
-alias search='pacman -Ss'
 alias clean='sudo pacman -Rns $(pacman -Qdtq)'
+alias search='pacman -Ss'
+alias showtrash="ls -a ~/.local/share/Trash/files/"
+alias cleantrash="sudo rm -rif ~/.local/share/Trash/files/*"
 alias sync='sudo reflector --country india --age 12 --latest 3 --sort rate --protocol https --save /etc/pacman.d/mirrorlist'
-alias sync-show='cat /etc/pacman.d/mirrorlist'
-alias screenshot='grim -g "$(slurp)"'
-alias delete='sudo rm -rf'
-alias webcam='ffplay -fflags +nobuffer /dev/video0'
-record() {
-    #Open the first terminal with ffplay in floating mode
-    swaymsg "exec foot -t 'ffplay' -e sh -c 'ffplay -fflags +nobuffer /dev/video0'"
+# alias phone="ssh 192.168.29.211 -p 8022"
+# alias share="/usr/local/bin/Scripts/Tools/share.sh"
+# alias cleanall='sudo pacman -Rns $(pacman -Qdtq);sudo pacman -Scc;yay -Scc;sudo journalctl --vacuum-size=100M'
 
-    # Open the second terminal with wf-recorder
-    foot -e sh -c 'wf-recorder -a'
+# Environment Variables
+export BEMENU_OPTS="--ignorecase \
+--no-spacing \
+--border 4 \
+--border-radius 15 \
+--center \
+--ch 22 \
+--cw 3 \
+--line-height 50 \
+--list 7 \
+--margin 400 \
+--fn 'JetBrains Mono Nerd Font 15' \
+--bdr #444444 \
+--tf '#FFFFFF' \
+--tb '#000000' \
+--ff '#FFFFFF' \
+--fb '#000000' \
+--nf '#FFFFFF' \
+--nb '#000000' \
+--af '#FFFFFF' \
+--ab '#000000' \
+--hf '#000000' \
+--hb '#8E9EC5'" 
+export SUDO_EDITOR="nvim"
+export EDITOR="nvim"
+
+# Tab Autocomplete
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+# _comp_options+=(globdots)
+
+# Vim Bindings
+bindkey -v
+export KEYTIMEOUT=1
+
+# Vim Bindings for Tab Autocomplete
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -v '^?' backward-delete-char
+
+# Cursor Shape for Different Vim Modes 
+function zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # Block
+        viins|main) echo -ne '\e[5 q';; # Beam
+    esac
 }
+
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins                 # Initiate `vi insert` as Keymap (Can Be Removed if `bindkey -V` Has Been Set Elsewhere)
+    echo -ne "\e[5 q"
+}
+
+zle -N zle-line-init
+echo -ne '\e[5 q'                # Beam Shape Cursor on Startup
+preexec() { echo -ne '\e[5 q' ;  # Beam Shape Cursor for Each New Prompt
+}
+
+# LF to Switch Directories (ctrl+o)
+lfcd () {
+    tmp="$(mktemp -uq)"
+    trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+# Key Bindings
+bindkey -s '^o' '^ulfcd\n'
+bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
+bindkey '^[[3~' delete-char
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^a' beginning-of-line
+bindkey '^l' end-of-line
+
+# Edit Current Command in Text Editor (ctrl+e)
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+bindkey -M vicmd '^e' edit-command-line
+bindkey -M visual '^[[3~' vi-delete
+bindkey -M vicmd '^[[3~' vi-delete-char
+
+# Plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Auto Login to Sway When on TTY 1
 if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec sway
 fi
