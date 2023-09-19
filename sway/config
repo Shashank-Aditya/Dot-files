@@ -4,10 +4,19 @@ exec_always autotiling
 # Window Border Width
 default_border pixel 2
 
-# Application Default Window Layout 
+# Application Default Window Rules
 for_window [app_id="mpv"] fullscreen
-for_window [app_id="swayimg"] floating enable
-for_window [class="ffplay"] floating enable
+for_window [app_id="swayimg"] {
+    floating enable
+    resize set 600 500
+}
+for_window [class="ffplay"] {
+    floating enable
+    sticky enable
+    move workspace current
+    resize set 400 300
+    move absolute position 967 468
+}
 
 # Defaults
 set $mod Mod4
@@ -23,8 +32,8 @@ set $right l
 # Monospaced Nerd Font
 font pango: JetbrainsMono Nerd Font 15
 
-# Wallpaper
-output * bg ~/Downloads/Mountain.jpg fill
+# Wallpaper (https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg)
+output * bg ~/Downloads/Wallpaper.jpg fill
 
    # Touchpad Configuration
    input "1739:32531:Synaptics_TM3253-001" {
@@ -56,7 +65,7 @@ output * bg ~/Downloads/Mountain.jpg fill
 
     # Applications & Scripts
     bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& nemo
-    bindsym $mod+n exec /usr/local/bin/Scripts/Wi-Fi/wifi-connect.sh
+    bindsym $mod+n exec /usr/local/bin/Scripts/Network/wifi-connect.sh
     bindsym $mod+s exec /usr/local/bin/Scripts/Tools/power.sh   
     bindsym $mod+w exec notify-send '🌐 Opening Browser...'&& brave 
     bindsym $mod+equal exec /usr/local/bin/Scripts/Tools/calc.sh
@@ -134,8 +143,8 @@ bar {
 
     colors {
         statusline #FFFFFF
-        background #000000D9
-	inactive_workspace #000000D9 #000000D9 #FFFFFF 
+        background #000000
+	inactive_workspace #000000 #000000 #FFFFFF 
 	focused_workspace  #444444 #444444 #FFFFFF
     }
 }
