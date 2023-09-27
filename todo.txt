@@ -1,4 +1,3 @@
-dotfiles script finalisation
 phone apps needed, plan on how to do it, backup everything
 pacman.conf -- add color, parallel downloads, I love candy, check space
 makepkg.conf -- add 4 threads j4
