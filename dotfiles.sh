@@ -125,3 +125,4 @@ sudo cp ~/dotfiles/sway/config ~/.config/sway/config
 sudo cp ~/dotfiles/zathura/zathurarc ~/.config/zathura/zathurarc
 sudo cp ~/dotfiles/zsh/zshrc ~/.zshrc
 sudo cp ~/dotfiles/mimeapps.list ~/.config/mimeapps.list
+sudo cp ~/dotfiles/git/gitconfig ~/.config/.gitconfig
