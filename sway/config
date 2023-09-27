@@ -32,7 +32,8 @@ set $right l
 # Monospaced Nerd Font
 font pango: JetbrainsMono Nerd Font 15
 
-# Wallpaper (https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg)
+# High Quality Peaceful Mountain Wallpaper 
+# (https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg)
 output * bg ~/Downloads/Wallpaper.jpg fill
 
    # Touchpad Configuration
@@ -62,6 +63,11 @@ output * bg ~/Downloads/Wallpaper.jpg fill
     # Screen Brightness
     bindsym XF86MonBrightnessUp exec brightnessctl set +1% && /usr/local/bin/Scripts/Tools/brightness.sh
     bindsym XF86MonBrightnessDown exec brightnessctl set 1%- && /usr/local/bin/Scripts/Tools/brightness.sh
+
+    # System Sound
+    bindsym XF86AudioMute exec pactl set-sink-volume @DEFAULT_SINK@ -100%
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ 100%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 
     # Applications & Scripts
     bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& nemo
