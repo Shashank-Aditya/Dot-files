@@ -10,8 +10,8 @@ sudo rm -rf yay
 
 yay brave-bin 
 yay autotiling
+sudo pacman -Rns $(pacman -Qdtq)
 
-# Create necessary directories
 sudo mkdir -p ~/Downloads
 sudo mkdir -p ~/.config/dunst/
 sudo mkdir -p ~/.config/foot/
@@ -28,10 +28,8 @@ sudo mkdir -p /usr/local/bin/Scripts/Network/
 sudo mkdir -p /usr/local/bin/Scripts/Sound/
 sudo mkdir -p /usr/local/bin/Scripts/Tools/
 
-# Download an image
 wget -P ~/Downloads https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg
 
-# Copy configuration files
 sudo cp ~/dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
 sudo cp ~/dotfiles/foot/foot.ini ~/.config/foot/foot.ini
 sudo cp ~/dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
