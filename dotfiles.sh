@@ -1,17 +1,21 @@
 #!/bin/sh
 
-sudo pacman -S wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu git xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg wf-recorder
+# Install Apps
+sudo pacman -S wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
 
+# Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd
 sudo rm -rf yay
 
+# Install AUR Apps
 yay brave-bin 
 yay autotiling
 sudo pacman -Rns $(pacman -Qdtq)
 
+# Create Necessary Folders
 sudo mkdir -p ~/Downloads
 sudo mkdir -p ~/.config/dunst/
 sudo mkdir -p ~/.config/foot/
@@ -27,9 +31,12 @@ sudo mkdir -p /usr/local/bin/Scripts/Bluetooth/
 sudo mkdir -p /usr/local/bin/Scripts/Network/
 sudo mkdir -p /usr/local/bin/Scripts/Sound/
 sudo mkdir -p /usr/local/bin/Scripts/Tools/
+sudo mkdir -p ~/.local/share/Trash/files
 
-sudo wget -P ~/Downloads https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg
+# Download Wallpaper
+sudo wget -P ~/Downloads -O ~/Downloads/Wallpaper.jpg https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg
 
+# Copy Dotfiles from Git Repo to System
 sudo cp ~/dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
 sudo cp ~/dotfiles/foot/foot.ini ~/.config/foot/foot.ini
 sudo cp ~/dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
@@ -62,3 +69,31 @@ sudo cp ~/dotfiles/zathura/zathurarc ~/.config/zathura/zathurarc
 sudo cp ~/dotfiles/zsh/zshrc ~/.zshrc
 sudo cp ~/dotfiles/mimeapps.list ~/.config/mimeapps.list
 sudo cp ~/dotfiles/git/gitconfig ~/.config/.gitconfig
+
+# Give Necessary Permissions to Scripts
+sudo chmod +x /usr/local/bin/Scripts/Battery/battery.sh
+sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueauto.sh
+sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueicon.sh
+sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueoff.sh
+sudo chmod +x /usr/local/bin/Scripts/Bluetooth/bluesearch.sh
+sudo chmod +x /usr/local/bin/Scripts/Network/essid.sh
+sudo chmod +x /usr/local/bin/Scripts/Network/wifi-connect.sh
+sudo chmod +x /usr/local/bin/Scripts/Sound/sound.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/brightness.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/calc.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/date.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/emoji.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/movie.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/power.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/share.sh
+sudo chmod +x /usr/local/bin/Scripts/Tools/tools.sh
+
+# Systemd Auto/Start Commands
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+bluetoothctl power on
+
+# Change Shell to zsh
+chsh -s /usr/bin/zsh
