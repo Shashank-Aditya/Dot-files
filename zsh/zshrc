@@ -21,7 +21,7 @@ alias ..="cd .."
 alias copy="wl-copy <"
 alias cp="sudo cp -iv"
 alias mv="sudo mv -iv"
-alias mkdir="sudo mkdir -pv"
+alias mkdir="mkdir -pv"
 alias diff="diff --color=auto"
 alias show="swayimg"
 alias install='sudo pacman -S'
@@ -31,8 +31,8 @@ alias search='pacman -Ss'
 alias showtrash="ls -a ~/.local/share/Trash/files/"
 alias cleantrash="sudo rm -rif ~/.local/share/Trash/files/*"
 alias sync='sudo reflector --country india --age 12 --latest 3 --sort rate --protocol https --save /etc/pacman.d/mirrorlist'
-# alias phone="ssh 192.168.29.211 -p 8022"
-# alias share="/usr/local/bin/Scripts/Tools/share.sh"
+#alias phone="ssh 192.168.247.85 -p 8022"
+alias share="/usr/local/bin/Scripts/Tools/share.sh"
 # alias cleanall='sudo pacman -Rns $(pacman -Qdtq);sudo pacman -Scc;yay -Scc;sudo journalctl --vacuum-size=100M'
 
 # Environment Variables
@@ -128,6 +128,8 @@ bindkey -M vicmd '^[[3~' vi-delete-char
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# history-substring-search
+# auto-notify
 
 # Auto Login to Sway When on TTY 1
 if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
