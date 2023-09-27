@@ -1,6 +1,3 @@
-configs clean, minimal and unbloated
-what you need -- as little mental overhead as possible
-everything should be as minimal as possible -- bare minimum stuff (not having it >>> having it, if doubt not needed)
-script optimisation all
+configs clean
 dotfiles script finalisation -- carefully all dependencies and everything, do trial install and see and add
 phone apps needed, plan on how to do it, backup everything
