@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Apps
-sudo pacman -S wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
+sudo pacman -Syu wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
 
 # Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
@@ -36,7 +36,9 @@ sudo mkdir -p ~/.local/share/Trash/files
 # Download Wallpaper
 sudo wget -P ~/Downloads -O ~/Downloads/Wallpaper.jpg https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg
 
-# Copy Dotfiles from Git Repo to System
+## Copy Dotfiles from Git Repo to System
+
+# Applications
 sudo cp ~/dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
 sudo cp ~/dotfiles/foot/foot.ini ~/.config/foot/foot.ini
 sudo cp ~/dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
@@ -47,6 +49,13 @@ sudo cp ~/dotfiles/lf/lfrc ~/.config/lf/lfrc
 sudo cp ~/dotfiles/mpv/input.conf ~/.config/mpv/input.conf
 sudo cp ~/dotfiles/mpv/mpv.conf ~/.config/mpv/mpv.conf
 sudo cp ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+sudo cp ~/dotfiles/sway/config ~/.config/sway/config
+sudo cp ~/dotfiles/zathura/zathurarc ~/.config/zathura/zathurarc
+sudo cp ~/dotfiles/zsh/zshrc ~/.zshrc
+sudo cp ~/dotfiles/mimeapps.list ~/.config/mimeapps.list
+sudo cp ~/dotfiles/git/gitconfig ~/.config/.gitconfig
+
+# Scripts
 sudo cp ~/dotfiles/scripts/Battery/battery.sh /usr/local/bin/Scripts/Battery/battery.sh
 sudo cp ~/dotfiles/scripts/Bluetooth/blueauto.sh /usr/local/bin/Scripts/Bluetooth/blueauto.sh
 sudo cp ~/dotfiles/scripts/Bluetooth/blueicon.sh /usr/local/bin/Scripts/Bluetooth/blueicon.sh
@@ -64,13 +73,8 @@ sudo cp ~/dotfiles/scripts/Tools/movie.sh /usr/local/bin/Scripts/Tools/movie.sh
 sudo cp ~/dotfiles/scripts/Tools/power.sh /usr/local/bin/Scripts/Tools/power.sh
 sudo cp ~/dotfiles/scripts/Tools/share.sh /usr/local/bin/Scripts/Tools/share.sh
 sudo cp ~/dotfiles/scripts/Tools/tools.sh /usr/local/bin/Scripts/Tools/tools.sh
-sudo cp ~/dotfiles/sway/config ~/.config/sway/config
-sudo cp ~/dotfiles/zathura/zathurarc ~/.config/zathura/zathurarc
-sudo cp ~/dotfiles/zsh/zshrc ~/.zshrc
-sudo cp ~/dotfiles/mimeapps.list ~/.config/mimeapps.list
-sudo cp ~/dotfiles/git/gitconfig ~/.config/.gitconfig
 
-# Give Necessary Permissions to Scripts
+# Give Execution Permissions to Scripts
 sudo chmod +x /usr/local/bin/Scripts/Battery/battery.sh
 sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueauto.sh
 sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueicon.sh
