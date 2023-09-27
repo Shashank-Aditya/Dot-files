@@ -1,77 +1,15 @@
 #!/bin/sh
 
-sudo pacman -S \
-    # Window Manager and Compositing
-    wlroots \
-    polkit \
-    sway \
-    swaybg \
-    swaylock \
-    
-    # Terminal & Shell
-    foot \
-    zsh \
-    zsh-syntax-highlighting \
-    zsh-autosuggestions \
-    
-    # Status Bar & System Info
-    neofetch \
-    htop \
-    i3blocks \
-    
-    # Text Editors & Document Viewer
-    neovim \
-    zathura \
-    zathura-pdf-poppler \
-    
-    # Menu
-    bemenu \
-    
-    # System Utilities
-    git \
-    xdg-utils \
-    qcalc \
-    brightnessctl \
-    wl-clipboard \
-    gammastep \
-    dunst \
-    curl \
-    wget \
-    grim \
-    slurp \
-    yt-dlp \
-    
-    # File Management
-    lf \
-    nemo \
-    
-    # Fonts
-    ttf-jetbrains-mono-nerd \
-    noto-fonts-emoji \
-    
-    # Audio
-    pavucontrol \
-    
-    # Bluetooth Management
-    blueman \
-    bluez \
-    bluez-utils \
-    
-    # Multimedia
-    mpv \
-    swayimg \
-    ffmpeg \
-    wf-recorder
+sudo pacman -S wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu git xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg wf-recorder
 
-# Install yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 cd
 sudo rm -rf yay
 
-# Install additional packages with yay
-yay -S brave-bin autotiling
+yay brave-bin 
+yay autotiling
 
 # Create necessary directories
 sudo mkdir -p ~/Downloads
