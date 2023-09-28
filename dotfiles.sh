@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Apps
-sudo pacman -Syu wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu xdg-utils qcalc brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
+sudo pacman -Syu --noconfirm wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu-wayland xdg-utils brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf nemo ttf-jetbrains-mono-nerd noto-fonts-emoji pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
 
 # Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
@@ -11,8 +11,10 @@ cd
 sudo rm -rf yay
 
 # Install AUR Apps
-yay brave-bin 
+yay brave-bin
 yay autotiling
+
+# Remove Orphaned Packages 
 sudo pacman -Rns $(pacman -Qdtq)
 
 # Create Necessary Folders
