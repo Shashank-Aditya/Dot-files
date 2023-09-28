@@ -76,23 +76,8 @@ sudo cp ~/dotfiles/scripts/Tools/power.sh /usr/local/bin/Scripts/Tools/power.sh
 sudo cp ~/dotfiles/scripts/Tools/share.sh /usr/local/bin/Scripts/Tools/share.sh
 sudo cp ~/dotfiles/scripts/Tools/tools.sh /usr/local/bin/Scripts/Tools/tools.sh
 
-# Give Execution Permissions to Scripts
-sudo chmod +x /usr/local/bin/Scripts/Battery/battery.sh
-sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueauto.sh
-sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueicon.sh
-sudo chmod +x /usr/local/bin/Scripts/Bluetooth/blueoff.sh
-sudo chmod +x /usr/local/bin/Scripts/Bluetooth/bluesearch.sh
-sudo chmod +x /usr/local/bin/Scripts/Network/essid.sh
-sudo chmod +x /usr/local/bin/Scripts/Network/wifi-connect.sh
-sudo chmod +x /usr/local/bin/Scripts/Sound/sound.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/brightness.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/calc.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/date.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/emoji.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/movie.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/power.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/share.sh
-sudo chmod +x /usr/local/bin/Scripts/Tools/tools.sh
+# Give Execution Permissions to All Scripts in /usr/local/bin/Scripts/
+sudo chmod -R +x /usr/local/bin/Scripts/
 
 # Systemd Auto/Start Commands
 sudo systemctl enable NetworkManager.service
