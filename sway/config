@@ -70,7 +70,7 @@ output * bg ~/Downloads/Wallpaper.jpg fill
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 
     # Applications & Scripts
-    bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& thunar
+    bindsym $mod+e exec notify-send '📂 Opening File Manager...'&& pcmanfm
     bindsym $mod+n exec /usr/local/bin/Scripts/Network/wifi-connect.sh
     bindsym $mod+s exec /usr/local/bin/Scripts/Tools/power.sh   
     bindsym $mod+w exec notify-send '🌐 Opening Browser...'&& brave 
