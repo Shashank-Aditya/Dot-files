@@ -10,7 +10,7 @@ for_window [app_id="swayimg"] {
     floating enable
     resize set 600 500
 }
-for_window [class="ffplay"] {
+for_window [app_id="ffplay"] {
     floating enable
     sticky enable
     move workspace current
