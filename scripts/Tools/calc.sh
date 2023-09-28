@@ -8,12 +8,11 @@ while [[ $# -gt 0 && $1 != "--" ]]; do
 done
 [[ $1 == "--" ]] && shift
 
-action=$(echo -e "Clear\nCopy to clipboard\nClose" | bemenu "$@" -p "= $answer")
+action=$(echo -e "Clear\nCopy to clipboard" | bemenu "$@" -p "= $answer")
 
 case $action in
     "Clear") exec "$0" "$@" ;;
     "Copy to clipboard") echo -n "$answer" | wl-copy ;;
-    "Close") ;;
     "") ;;
     *) exec "$0" "$answer $action" "$@" ;;
 esac
