@@ -88,3 +88,13 @@ bluetoothctl power on
 
 # Change Shell to zsh
 chsh -s /usr/bin/zsh
+
+# AutoLogin Configure
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+sudo tee /etc/systemd/system/getty@tty1.service.d/autologin.conf >/dev/null <<EOL
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin shashank --noclear %I foot
+ExecStartPre=-/bin/sh -c "TERM=linux setterm --blank 0 >/dev/tty1"
+EOL
+sudo systemctl enable getty@tty1.service
