@@ -23,7 +23,7 @@
 4. Large Community of Packages to Install. Everything Everyone Ever Wants (AUR)
 5. Binary Distro — Not Source Based
 6. Community Maintained and Not Corporate Backed
-7. Philosophical Things Like Keeping Things Simple, Vanilla from Upstream, etc. <br><br>
+7. Philosophical Things Like KISS, Vanilla from Upstream, etc. <br><br>
 No Linux Distribution single-handedly matches all of this criteria (NixOS is an exception though)
 
 # Installation/Setup
