@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Apps
-sudo pacman -Syu --noconfirm wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu-wayland reflector pcmanfm-gtk3 brightnessctl wl-clipboard gammastep dunst curl wget mandb mtpfs gvfs-mtp gvfs-gphoto2 wireless_tools networkmanager grim slurp yt-dlp lf fzf thunar ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
+sudo pacman -Syu --noconfirm wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu-wayland reflector pcmanfm-gtk3 brightnessctl wl-clipboard gammastep libnotify dunst curl wget man-db mtpfs gvfs-mtp gvfs-gphoto2 wireless_tools networkmanager git grim slurp yt-dlp lf fzf ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome ttf-joypixels pavucontrol bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
 
 # Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
