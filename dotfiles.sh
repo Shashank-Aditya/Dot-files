@@ -21,6 +21,7 @@ sudo pacman -Rns $(pacman -Qdtq)
 sudo mkdir -p ~/Downloads
 sudo mkdir -p ~/.config/dunst/
 sudo mkdir -p ~/.config/foot/
+sudo mkdir -p ~/.config/git/
 sudo mkdir -p ~/.config/i3blocks/
 sudo mkdir -p ~/.config/lf/
 sudo mkdir -p ~/.config/mpv/
@@ -44,6 +45,7 @@ sudo wget -P ~/Downloads -O ~/Downloads/Wallpaper.jpg https://upload.wikimedia.o
 sudo cp ~/dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
 sudo cp ~/dotfiles/foot/foot.ini ~/.config/foot/foot.ini
 sudo cp ~/dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
+sudo cp ~/dotfiles/git/gitconfig ~/.config/git/gitconfig
 sudo cp ~/dotfiles/i3blocks/config ~/.config/i3blocks/config
 sudo cp ~/dotfiles/lf/colors ~/.config/lf/colors
 sudo cp ~/dotfiles/lf/icons ~/.config/lf/icons
