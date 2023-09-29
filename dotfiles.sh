@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install Apps
-sudo pacman -Syu --noconfirm wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu-wayland reflector pcmanfm-gtk3 brightnessctl wl-clipboard gammastep dunst curl wget wireless_tools networkmanager grim slurp yt-dlp lf fzf thunar ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
+sudo pacman -Syu --noconfirm wlroots polkit sway swaybg swaylock foot zsh zsh-syntax-highlighting zsh-autosuggestions neofetch htop i3blocks neovim zathura zathura-pdf-poppler bemenu-wayland reflector pcmanfm-gtk3 brightnessctl wl-clipboard gammastep dunst curl wget mandb mtpfs gvfs-mtp gvfs-gphoto2 wireless_tools networkmanager grim slurp yt-dlp lf fzf thunar ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome pavucontrol blueman bluez bluez-utils mpv swayimg ffmpeg libqalculate wf-recorder
 
 # Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
@@ -13,6 +13,7 @@ sudo rm -rf yay
 # Install AUR Apps
 yay brave-bin
 yay autotiling
+yay jmtpfs
 
 # Remove Orphaned Packages 
 sudo pacman -Rns $(pacman -Qdtq)
@@ -21,7 +22,6 @@ sudo pacman -Rns $(pacman -Qdtq)
 sudo mkdir -p ~/Downloads
 sudo mkdir -p ~/.config/dunst/
 sudo mkdir -p ~/.config/foot/
-sudo mkdir -p ~/.config/git/
 sudo mkdir -p ~/.config/i3blocks/
 sudo mkdir -p ~/.config/lf/
 sudo mkdir -p ~/.config/mpv/
@@ -45,7 +45,7 @@ sudo wget -P ~/Downloads -O ~/Downloads/Wallpaper.jpg https://upload.wikimedia.o
 sudo cp ~/dotfiles/dunst/dunstrc ~/.config/dunst/dunstrc
 sudo cp ~/dotfiles/foot/foot.ini ~/.config/foot/foot.ini
 sudo cp ~/dotfiles/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
-sudo cp ~/dotfiles/git/gitconfig ~/.config/git/gitconfig
+sudo cp ~/dotfiles/git/gitconfig ~/.gitconfig
 sudo cp ~/dotfiles/i3blocks/config ~/.config/i3blocks/config
 sudo cp ~/dotfiles/lf/colors ~/.config/lf/colors
 sudo cp ~/dotfiles/lf/icons ~/.config/lf/icons
@@ -100,3 +100,7 @@ ExecStart=-/usr/bin/agetty --autologin shashank --noclear %I foot
 ExecStartPre=-/bin/sh -c "TERM=linux setterm --blank 0 >/dev/tty1"
 EOL
 sudo systemctl enable getty@tty1.service
+
+# Git SSH Configure
+
+ssh-keygen -t ed25519 -C "msrsaditya@gmail.com
