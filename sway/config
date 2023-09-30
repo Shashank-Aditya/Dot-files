@@ -124,11 +124,11 @@ output * bg ~/Downloads/Wallpaper.jpg fill
     bindsym $mod+minus scratchpad show
 
     # Layouts (Might Be Broken Because of "Dynamic Tiling" or Custom Bindings)
-    #bindsym $mod+t layout tabbed
-    #bindsym $mod+s layout stacking
-    #bindsym $mod+e layout toggle split
-    #bindsym $mod+b splith
-    #bindsym $mod+v splitv
+    # bindsym $mod+t layout tabbed
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+e layout toggle split
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
 # Resize
 mode "resize" {
