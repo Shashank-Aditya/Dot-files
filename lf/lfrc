@@ -10,11 +10,19 @@ set icons true
 # Key Bindings
 map <enter> shell
 map . set hidden!
-map p paste
 map x cut
 map y copy
+map p paste
 map r reload
+map d trash
 map c clear
+map B bulkrename
+map E extract
+map D cleantrash
+map <c-n> push :touch<space>
+map <c-N> push :mkdir<space>
+map <c-f> $lf -remote "send $id select \"$(fzf)\""
+map <c-r> push :rename<space>
 map gg top
 map gh cd ~/
 map gD cd ~/Documents
@@ -32,6 +40,49 @@ cmd open &{{
     esac
 }}
 
+# File Operations
+cmd touch $touch "$(echo $* | tr ' ' '\ ')"
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+cmd bulkrename ${{
+    tmpfile_old="$(mktemp)"
+    tmpfile_new="$(mktemp)"
+
+    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
+
+    echo "$fs" > "$tmpfile_old"
+    echo "$fs" > "$tmpfile_new"
+    $EDITOR "$tmpfile_new"
+
+    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
+
+    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst
+    do
+        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
+    done
+
+    rm -f "$tmpfile_old" "$tmpfile_new"
+    lf -remote "send $id unselect"
+}}
+
+# Trashing Files
+cmd trash ${{ 
+    if [[ -n "$fs" ]]; then
+        for file in $fs; do
+            sudo mv "$file" ~/.local/share/Trash/files/
+        done
+    else
+        sudo mv "$f" ~/.local/share/Trash/files/
+    fi
+}}
+
+cmd cleantrash ${{ 
+    read -rp "Are you sure you want to DELETE all trash PERMANENTLY? Type 'YES' in all caps to confirm: " confirm
+    if [[ "$confirm" == "YES" ]]; then
+        sudo rm -rif ~/.local/share/Trash/files/*
+    fi
+}}
+
 # Archive Extraction
 cmd extract ${{
     set -f
@@ -43,20 +94,4 @@ cmd extract ${{
         *.rar) unrar x $f;;
         *.7z) 7z x $f;;
     esac
-}}
-
-cmd tar ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    tar czf $1.tar.gz $1
-    rm -rf $1
-}}
-
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
 }}
