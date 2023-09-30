@@ -57,9 +57,9 @@ export BEMENU_OPTS="--ignorecase \
 --af '#FFFFFF' \
 --ab '#000000' \
 --hf '#000000' \
---hb '#8E9EC5'" 
-export SUDO_EDITOR="nvim"
+--hb '#8E9EC5'"
 export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
 
 # Tab Autocomplete
 autoload -U compinit

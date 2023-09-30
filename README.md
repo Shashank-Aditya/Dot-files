@@ -43,4 +43,4 @@ Finally run the script
 It will automatically install all dependencies, copies all config files, runs systemd commands for starting services, changes shell to zsh, applies tweaks to system and so much more!
 
 # License
-This is Licensed Under GPL3. You're free to use this as you see fit.
+This is Licensed Under GPL3. You're free to use this as you see fit (IDC 🙂)
