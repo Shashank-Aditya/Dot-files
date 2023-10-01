@@ -30,7 +30,7 @@ alias clean='sudo pacman -Rns $(pacman -Qdtq)'
 alias search='pacman -Ss'
 alias showtrash="ls -a ~/.local/share/Trash/files/"
 alias cleantrash="sudo rm -rif ~/.local/share/Trash/files/*"
-alias sync='wget -qO- "https://archlinux.org/mirrorlist/?country=IN&protocol=https&ip_version=4" | tail -n +7 | cut -d " " -f 3- | head -n -2 | sed "s|^|Server = |" | sudo tee /etc/pacman.d/mirrorlist >/dev/null'
+alias sync = 'sudo reflector --country india --age 12 --latest 3 --sort rate --protocol https --save /etc/pacman.d/mirrorlist'
 alias share="/usr/local/bin/Scripts/Tools/share.sh"
 # alias phone="ssh 192.168.247.85 -p 8022"
 # alias cleanall='sudo pacman -Rns $(pacman -Qdtq);sudo pacman -Scc;yay -Scc;sudo journalctl --vacuum-size=100M'
