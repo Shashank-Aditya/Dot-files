@@ -32,9 +32,8 @@ set $right l
 # Monospaced Nerd Font
 font pango: JetbrainsMono Nerd Font 15
 
-# High Quality Peaceful Mountain Wallpaper 
-# (https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg)
-output * bg ~/Downloads/Wallpaper.jpg fill
+# Wallpaper 
+output * bg ~/Downloads/Wallpaper.png fill
 
    # Touchpad Configuration
    input "1739:32531:Synaptics_TM3253-001" {

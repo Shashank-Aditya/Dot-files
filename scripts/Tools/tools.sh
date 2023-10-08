@@ -50,8 +50,8 @@ Bluetooth=(
 # Input Device --> Records Sounds Coming in (Playing Outside Computer) [If Input Device = External Microphone]
 # If Input Device = Default Microphone => All Sounds Will be Recorded
 
-inside_sound="alsa_output.pci-0000_00_1f.3.5.analog-stereo.monitor"
-outside_sound="alsa_input.pci-0000_00_1f.3.5.analog-stereo"
+inside_sound="alsa_output.pci-0000_00_1f.3.3.analog-stereo.monitor"
+outside_sound="alsa_input.pci-0000_00_1f.3.3.analog-stereo"
 
 menu_choice=$(printf '%s\n' "${Menu[@]}" | bemenu -p "")
 case "$menu_choice" in
@@ -114,11 +114,11 @@ case "$menu_choice" in
                                 ;;
                             "${Sound_Type[2]}")
                                 mkdir -p ~/Videos
-                                notify-send "Turn on Bluetooth"; pactl set-default-source $outside_sound;foot -e sh -c "wf-recorder -a -g '$(slurp)' -f ~/Videos/recording.mp4"
+                                notify-send "Turn on Bluetooth"; pactl set-default-source $outside_sound; foot -e sh -c "wf-recorder -a -g '$(slurp)' -f ~/Videos/recording.mp4"
                                 ;;
                             "${Sound_Type[3]}")
                                mkdir -p ~/Videos
-                               notify-send "Turn off Bluetooth";pactl set-default-source $outside_sound;foot -e sh -c "wf-recorder -a -g '$(slurp)' -f ~/Videos/recording.mp4"
+                               notify-send "Turn off Bluetooth";pactl set-default-source $outside_sound; foot -e sh -c "wf-recorder -a -g '$(slurp)' -f ~/Videos/recording.mp4"
                                 ;;
                             *)
                                 exit 1
@@ -138,7 +138,7 @@ case "$menu_choice" in
                         ;;
                     "${Webcam[1]}")
                         mkdir -p ~/Pictures
-                        notify-send "Say Cheese!";sleep 2;foot -e sh -c 'ffmpeg -f v4l2 -i /dev/video0 -frames 1 ~/Pictures/webcam.png';notify-send "Picture Captured!"
+                        notify-send "Say Cheese!"; sleep 1 ; foot -e sh -c 'ffmpeg -f v4l2 -i /dev/video0 -frames 1 ~/Pictures/webcam.png';notify-send "Picture Captured!"
                         ;;
                     "${Webcam[2]}")
                         mkdir -p ~/Videos

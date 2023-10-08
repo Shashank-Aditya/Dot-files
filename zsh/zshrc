@@ -6,8 +6,8 @@ PS1="%B%{$fg[white]%}[%{$fg[white]%}%n%{$fg[white]%}@%{$fg[white]%}%M %{$fg[cyan
 setopt share_history
 setopt append_history
 setopt autocd
-# setopt interactive_comments
 # stty stop undef
+# setopt interactive_comments
 
 # History
 HISTSIZE=100000

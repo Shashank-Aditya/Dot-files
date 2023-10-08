@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Install Apps
-sudo pacman -Syu --noconfirm bemenu-wayland bluez bluez-utils brightnessctl curl dunst ffmpeg foot fzf gammastep git grim gvfs-gphoto2 gvfs-mtp htop i3blocks lf libnotify libqalculate man-db mpv mtpfs neofetch neovim networkmanager noto-fonts-emoji otf-font-awesome pavucontrol pcmanfm-gtk3 polkit p7zip slurp sway swaybg swayimg swaylock tar ttf-jetbrains-mono-nerd ttf-joypixels unrar unzip wf-recorder wget wireless_tools wl-clipboard wlroots xdg-utils yt-dlp zathura zathura-pdf-poppler zsh zsh-autosuggestions zsh-syntax-highlighting 
-
+sudo pacman -Syu --noconfirm bemenu-wayland bluez bluez-utils brightnessctl curl dunst ffmpeg foot fzf gammastep git grim gvfs-mtp htop i3blocks lf libnotify libqalculate man-db mpv mtpfs neofetch neovim networkmanager noto-fonts-emoji otf-font-awesome pavucontrol pcmanfm-gtk3 polkit p7zip slurp sway swaybg swayimg swaylock tar ttf-jetbrains-mono-nerd unrar unzip wf-recorder reflector upower wget wireless_tools wl-clipboard wlroots xdg-utils yt-dlp zathura zathura-pdf-poppler zsh zsh-autosuggestions zsh-syntax-highlighting 
 # Install AUR Manager
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -37,7 +36,7 @@ sudo mkdir -p /usr/local/bin/Scripts/Tools/
 sudo mkdir -p ~/.local/share/Trash/files
 
 # Download Wallpaper
-sudo wget -P ~/Downloads -O ~/Downloads/Wallpaper.jpg https://upload.wikimedia.org/wikipedia/commons/4/4d/Ancient_Bristlecone_Pine_Forest%2C_United_States_%28Unsplash%29.jpg
+sudo wget -P ~/Downloads -O Downloads/Wallpaper.png https://4kwallpapers.com/images/wallpapers/iron-man-marvel-superheroes-amoled-pitch-black-minimal-art-7680x6200-6293.png
 
 ## Copy Dotfiles from Git Repo to System
 
